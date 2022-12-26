@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: restapi
+  name: restapi
+spec:
+  selector:
+    matchLabels:
+      app: restapi
+  template:
+    metadata:
+      labels:
+        app: restapi
+    spec:
+      containers:
+      - image: nikhilsharmawe/testtt
+        name: library
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: restapi
+  name: restapi
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: restapi
